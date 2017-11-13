@@ -1,0 +1,41 @@
+<style type="text/css">
+	table button{
+		display: inline-block;
+		height: 100px;
+		width: 100px;
+		font-size: 30px;
+		-webkit-appearance: none;
+	}
+</style>
+
+<p>{{namePlayer1}} VS {{namePlayer2}}</p>
+<table id="gameBoard" style="margin: auto">
+	<tr>
+		<td><button class="gameButton" id="TL" onclick="toggle(TL.id)" value="8"></button></td>
+		<td><button class="gameButton" id="TC" onclick="toggle(TC.id)" value="1"></button></td>
+		<td><button class="gameButton" id="TR" onclick="toggle(TR.id)" value="6"></button></td>
+	</tr>
+	<tr>
+		<td><button class="gameButton" id="ML" onclick="toggle(ML.id)" value="3"></button></td>
+		<td><button class="gameButton" id="MC" onclick="toggle(MC.id)" value="5"></button></td>
+		<td><button class="gameButton" id="MR" onclick="toggle(MR.id)" value="7"></button></td>
+	</tr>
+	<tr>
+		<td><button class="gameButton" id="BL" onclick="toggle(BL.id)" value="4"></button></td>
+		<td><button class="gameButton" id="BC" onclick="toggle(BC.id)" value="9"></button></td>
+		<td><button class="gameButton" id="BR" onclick="toggle(BR.id)" value="2"></button></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><button onclick="reset()" style="height: 50px; font-size: 17px;">Reset</button></td>
+		<td><button onclick="Exit()" style="height: 50px; font-size: 17px;">Exit</button></td>
+	</tr>
+</table>
+<span id="tips">Next:</span><span id="alert"></span>
+
+
+<table id="scoreboard">
+	<tr>
+		<th>Rank</th>
+		<th>Name</th>
+</table>

@@ -1,102 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Tic Tac Toe</title>
-	<style type="text/css">
-		table button{
-			display: inline-block;
-			height: 100px;
-			width: 100px;
-			font-size: 30px;
-			-webkit-appearance: none;
-		}
-	</style>
+	<title>Register</title>
+	<meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+	<script src="gameScript.js"></script>
 </head>
-<body>
+<body ng-app="myApp">
 
-<table id="gameBoard" style="margin: auto">
-	<tr>
-		<td><button class="gameButton" id="TL" onclick="toggle(TL.id)" value="8"></button></td>
-		<td><button class="gameButton" id="TC" onclick="toggle(TC.id)" value="1"></button></td>
-		<td><button class="gameButton" id="TR" onclick="toggle(TR.id)" value="6"></button></td>
-	</tr>
-		<tr>
-		<td><button class="gameButton" id="ML" onclick="toggle(ML.id)" value="3"></button></td>
-		<td><button class="gameButton" id="MC" onclick="toggle(MC.id)" value="5"></button></td>
-		<td><button class="gameButton" id="MR" onclick="toggle(MR.id)" value="7"></button></td>
-	</tr>
-	<tr>
-		<td><button class="gameButton" id="BL" onclick="toggle(BL.id)" value="4"></button></td>
-		<td><button class="gameButton" id="BC" onclick="toggle(BC.id)" value="9"></button></td>
-		<td><button class="gameButton" id="BR" onclick="toggle(BR.id)" value="2"></button></td>
-	</tr>
-	<tr>
-		<td></td>
-		<td><button onclick="reset()" style="height: 50px; font-size: 17px;">Reset</button></td>
-		<td></td>
-	</tr>
-</table>
-<span id="tips">Next:</span><span id="alert"></span>
+	<div ng-view></div>
 
 <script>
 
-	var count = 0;
-	var winner = false;
-	var mark, nxt;
+	var app = angular.module("myApp", ["ngRoute"]);
+	app.config(function($routeProvider) {
+	    $routeProvider
+	    .when("/",{
+	    	templateUrl : "register.htm",
+	    })
+	    .when("/gameConsole", {
+	        templateUrl : "gameConsole.htm",
+	        controller : "gameContol"
+	    });
+	});
 
-	function toggle(tagId){
-		if (winner == true){
-			return;
-		}else if(document.getElementById(tagId).innerHTML=="X" || document.getElementById(tagId).innerHTML =="O"){
-			document.getElementById("alert").innerHTML=" Invalid Move!";
+	app.controller("gameContol", function ($scope) {
+		$scope.namePlayer1 = "p1";
+		$scope.namePlayer2 = "p2";
+	});
+
+
+	function _submit(){
+		var p = document.getElementsByTagName("input")
+		if (p[0].value=="" || p[1].value == ""){
 			return;
 		}else{
-			document.getElementById("alert").innerHTML="";
-			count++;
-			if (count >= 9){
-				document.getElementById("tips").innerHTML="";
-				document.getElementById("alert").innerHTML="Tie. New Game?";
-			}else{
-				if (count % 2 == 0){
-					mark = "O";
-					nxt ="Next: X";
-				}else{
-					mark = "X";
-					nxt = "Next: O";
-				}
-				document.getElementById("tips").innerHTML=nxt;
-			}
-			document.getElementById(tagId).innerHTML=mark;
+			window.location.href = '#!gameConsole';
 		}
-		checkWin();
-	}
-
-	function checkWin() {
-
-		if((document.getElementById("TL").innerHTML == document.getElementById("TC").innerHTML && document.getElementById("TC").innerHTML == document.getElementById("TR").innerHTML &&
-			document.getElementById("TL").innerHTML != "")|| /*top*/
-			(document.getElementById("ML").innerHTML == document.getElementById("MC").innerHTML && document.getElementById("MC").innerHTML == document.getElementById("MR").innerHTML &&document.getElementById("ML").innerHTML != "")|| /*middle*/
-			(document.getElementById("BL").innerHTML == document.getElementById("BC").innerHTML && document.getElementById("BC").innerHTML == document.getElementById("BR").innerHTML &&document.getElementById("BL").innerHTML != "")|| /*bot*/
-			(document.getElementById("TL").innerHTML == document.getElementById("ML").innerHTML && document.getElementById("ML").innerHTML == document.getElementById("BL").innerHTML &&document.getElementById("BL").innerHTML != "")|| /*left*/
-			(document.getElementById("TC").innerHTML == document.getElementById("MC").innerHTML && document.getElementById("MC").innerHTML == document.getElementById("BC").innerHTML &&document.getElementById("BC").innerHTML != "")|| /*cent*/
-			(document.getElementById("TR").innerHTML == document.getElementById("MR").innerHTML && document.getElementById("MR").innerHTML == document.getElementById("BR").innerHTML &&document.getElementById("BR").innerHTML != "")|| /*right*/
-			(document.getElementById("TL").innerHTML == document.getElementById("MC").innerHTML && document.getElementById("MC").innerHTML == document.getElementById("BR").innerHTML &&document.getElementById("BR").innerHTML != "")||
-			(document.getElementById("TR").innerHTML == document.getElementById("MC").innerHTML && document.getElementById("MC").innerHTML == document.getElementById("BL").innerHTML &&document.getElementById("BL").innerHTML != "")){
-			winner = true;
-			document.getElementById("tips").innerHTML="";
-			document.getElementById("alert").innerHTML=mark + " is the winner!"
-		}
-	}
-
-	function reset(){
-		var x = document.getElementsByClassName("gameButton");
-		for (var i = 0; i <= 8; i++) {
-			x[i].innerHTML="";
-		}
-		winner = false;
-		count =0;
-		document.getElementById("tips").innerHTML="Next:";
-		document.getElementById("alert").innerHTML="";
 	}
 
 </script>
