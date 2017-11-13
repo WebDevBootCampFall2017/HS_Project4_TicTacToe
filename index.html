@@ -8,6 +8,7 @@
 			height: 100px;
 			width: 100px;
 			font-size: 30px;
+			-webkit-appearance: none;
 		}
 	</style>
 </head>
@@ -40,7 +41,8 @@
 <script>
 
 	var count = 0;
-	var winner, mark, nxt;
+	var winner = false;
+	var mark, nxt;
 
 	function toggle(tagId){
 		if (winner == true){
@@ -70,12 +72,12 @@
 	}
 
 	function checkWin() {
-		winner = false;
+
 		if((document.getElementById("TL").innerHTML == document.getElementById("TC").innerHTML && document.getElementById("TC").innerHTML == document.getElementById("TR").innerHTML &&
 			document.getElementById("TL").innerHTML != "")|| /*top*/
 			(document.getElementById("ML").innerHTML == document.getElementById("MC").innerHTML && document.getElementById("MC").innerHTML == document.getElementById("MR").innerHTML &&document.getElementById("ML").innerHTML != "")|| /*middle*/
 			(document.getElementById("BL").innerHTML == document.getElementById("BC").innerHTML && document.getElementById("BC").innerHTML == document.getElementById("BR").innerHTML &&document.getElementById("BL").innerHTML != "")|| /*bot*/
-			(document.getElementById("TL").innerHTML == document.getElementById("MC").innerHTML && document.getElementById("MC").innerHTML == document.getElementById("BL").innerHTML &&document.getElementById("BL").innerHTML != "")|| /*left*/
+			(document.getElementById("TL").innerHTML == document.getElementById("ML").innerHTML && document.getElementById("ML").innerHTML == document.getElementById("BL").innerHTML &&document.getElementById("BL").innerHTML != "")|| /*left*/
 			(document.getElementById("TC").innerHTML == document.getElementById("MC").innerHTML && document.getElementById("MC").innerHTML == document.getElementById("BC").innerHTML &&document.getElementById("BC").innerHTML != "")|| /*cent*/
 			(document.getElementById("TR").innerHTML == document.getElementById("MR").innerHTML && document.getElementById("MR").innerHTML == document.getElementById("BR").innerHTML &&document.getElementById("BR").innerHTML != "")|| /*right*/
 			(document.getElementById("TL").innerHTML == document.getElementById("MC").innerHTML && document.getElementById("MC").innerHTML == document.getElementById("BR").innerHTML &&document.getElementById("BR").innerHTML != "")||
