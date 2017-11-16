@@ -48,7 +48,7 @@
 				var _winner = localStorage.getItem("p1");
 				document.getElementById("XScore").innerHTML = XScore
 			}else if (mark == "O"){
-				OScore += 1 
+				OScore = OScore + 1 
 				_winner = localStorage.getItem("p2");
 				document.getElementById("OScore").innerHTML = OScore
 			}
