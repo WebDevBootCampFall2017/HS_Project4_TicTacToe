@@ -49,7 +49,7 @@
 				document.getElementById("XScore").innerHTML = XScore
 			}else if (mark == "O"){
 				OScore += 1 
-				_winner = localStorage.getItem("p2")
+				_winner = localStorage.getItem("p2");
 				document.getElementById("OScore").innerHTML = OScore
 			}
 			document.getElementById("alert").innerHTML= _winner + " is the winner!"
