@@ -34,15 +34,23 @@
 				$scope.errormsg = "Please enter the name."
 				return;
 			}else{
-				console.log($scope.namePlayer1)
+				localStorage.setItem("p1", $scope.namePlayer1)
+				localStorage.setItem("p2", $scope.namePlayer2)
 				$location.path("gameConsole")
 			}
 		}
 	});
 
 	app.controller("gameContol", function ($scope, $location) {
+		$scope.namePlayer1 = localStorage.getItem("p1");
+		$scope.namePlayer2 = localStorage.getItem("p2");
+
 		$scope._exit = function(){
 			reset();
+			XScore = 0
+			OScore = 0
+			localStorage.setItem("p1", null)
+			localStorage.setItem("p2", null)
 			$location.path("/")
 		}
 	});

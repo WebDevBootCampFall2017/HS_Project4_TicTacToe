@@ -43,16 +43,17 @@
 			(document.getElementById("TR").innerHTML == document.getElementById("MC").innerHTML && document.getElementById("MC").innerHTML == document.getElementById("BL").innerHTML &&document.getElementById("BL").innerHTML != "")){
 			winner = true;
 			document.getElementById("tips").innerHTML="";
-			document.getElementById("alert").innerHTML=mark + " is the winner!"
-
-
 			if (mark == "X"){
 				XScore += 1 
-				console.log(XScore);
+				var _winner = localStorage.getItem("p1");
+				document.getElementById("XScore").innerHTML = XScore
 			}else if (mark == "O"){
 				OScore += 1 
-				console.log(OScore)
+				_winner = localStorage.getItem("p2")
+				document.getElementById("OScore").innerHTML = OScore
 			}
+			document.getElementById("alert").innerHTML= _winner + " is the winner!"
+
 		}
 	}
 
