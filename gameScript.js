@@ -1,4 +1,6 @@
 	var count = 0;
+	var XScore = 0;
+	var Oscore = 0;
 	var winner = false;
 	var mark, nxt;
 
@@ -42,6 +44,15 @@
 			winner = true;
 			document.getElementById("tips").innerHTML="";
 			document.getElementById("alert").innerHTML=mark + " is the winner!"
+
+
+			if (mark == "X"){
+				XScore += 1 
+				console.log(XScore);
+			}else if (mark == "O"){
+				OScore += 1 
+				console.log(OScore)
+			}
 		}
 	}
 
@@ -54,9 +65,4 @@
 		count =0;
 		document.getElementById("tips").innerHTML="Next:";
 		document.getElementById("alert").innerHTML="";
-	}
-
-	function _click(){
-		document.getElementsByTagName("form")[0]
-		window.location.href = '#!gameConsole';
 	}

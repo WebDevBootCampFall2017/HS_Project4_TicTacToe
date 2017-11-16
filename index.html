@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Register</title>
+	<title>Tic Tac Toe</title>
 	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
 	<script src="gameScript.js"></script>
 </head>
 <body ng-app="myApp">
 
+	<h2 style="text-align: center;">Tic Tac Toe</h2>
 	<div ng-view></div>
-
 <script>
 
 	var app = angular.module("myApp", ["ngRoute"]);
@@ -18,6 +20,7 @@
 	    $routeProvider
 	    .when("/",{
 	    	templateUrl : "register.htm",
+	    	controller : "regCtrl"
 	    })
 	    .when("/gameConsole", {
 	        templateUrl : "gameConsole.htm",
@@ -25,20 +28,26 @@
 	    });
 	});
 
-	app.controller("gameContol", function ($scope) {
-		$scope.namePlayer1 = "p1";
-		$scope.namePlayer2 = "p2";
+	app.controller("regCtrl", function ($scope, $location){
+		$scope.reg = function(){	
+			if ($scope.namePlayer1 == undefined || $scope.namePlayer2 == undefined){
+				$scope.errormsg = "Please enter the name."
+				return;
+			}else{
+				console.log($scope.namePlayer1)
+				$location.path("gameConsole")
+			}
+		}
+	});
+
+	app.controller("gameContol", function ($scope, $location) {
+		$scope._exit = function(){
+			reset();
+			$location.path("/")
+		}
 	});
 
 
-	function _submit(){
-		var p = document.getElementsByTagName("input")
-		if (p[0].value=="" || p[1].value == ""){
-			return;
-		}else{
-			window.location.href = '#!gameConsole';
-		}
-	}
 
 </script>
 

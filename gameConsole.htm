@@ -6,9 +6,13 @@
 		font-size: 30px;
 		-webkit-appearance: none;
 	}
+	h3, h4, h5{
+		text-align: center;
+	}
 </style>
 
-<p>{{namePlayer1}} VS {{namePlayer2}}</p>
+<h3>{{namePlayer1}} X vs O {{namePlayer2}}</h3>
+<h5 id="tips">Next:</h5><h5 id="alert"></h5>
 <table id="gameBoard" style="margin: auto">
 	<tr>
 		<td><button class="gameButton" id="TL" onclick="toggle(TL.id)" value="8"></button></td>
@@ -27,15 +31,12 @@
 	</tr>
 	<tr>
 		<td></td>
-		<td><button onclick="reset()" style="height: 50px; font-size: 17px;">Reset</button></td>
-		<td><button onclick="Exit()" style="height: 50px; font-size: 17px;">Exit</button></td>
+		<td><button onclick="reset()" style="height: 50px; font-size: 17px;">Clear</button></td>
+		<td><button ng-click="_exit()" style="height: 50px; font-size: 17px;">Exit</button></td>
 	</tr>
 </table>
-<span id="tips">Next:</span><span id="alert"></span>
 
 
-<table id="scoreboard">
-	<tr>
-		<th>Rank</th>
-		<th>Name</th>
-</table>
+<div>
+	<h4>{{namePlayer1}} : {{namePlayer2}}</h4>
+</div>

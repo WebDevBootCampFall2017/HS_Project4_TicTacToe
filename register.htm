@@ -1,5 +1,8 @@
-<form>
-	<table>
+<form class="form">
+	<div ng-show="errormsg" class="alert alert-danger">
+		<strong>Error: </strong>{{errormsg}}
+	</div>
+	<table style="margin: auto;">
 		<tr>
 			<td>Player 1:</td>
 			<td><input type="text" ng-model="namePlayer1" placeholder="Enter name here"></td>
@@ -9,5 +12,5 @@
 			<td><input type="text" ng-model="namePlayer2" placeholder="Enter name here"></td>
 		</tr>
 	</table>
-	<button type="submit" onclick="_submit()">Duel</button>
+	<button ng-click="reg()" style="display: block; margin: auto;">{{namePlayer1}} vs {{namePlayer2}}</button>
 </form>
