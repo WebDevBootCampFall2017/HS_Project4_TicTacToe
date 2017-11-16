@@ -1,6 +1,6 @@
 	var count = 0;
 	var XScore = 0;
-	var Oscore = 0;
+	var OScore = 0;
 	var winner = false;
 	var mark, nxt;
 
